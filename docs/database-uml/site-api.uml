@@ -1,0 +1,43 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Categories" as e01 {
+  *id : integer
+  --
+  *caption: text
+  parent_id : integer
+}
+
+entity "Products" as e02 {
+  *id : serial
+  --
+  *name : text
+  images : text
+  description : text
+  short_description : text
+  category_id : integer
+}
+
+entity "Price" as e03 {
+  *id_product : integer
+  --
+  *price : money
+  date : timestamp [ (p) ] [ without time zone ]
+  new_price : money
+}
+
+entity "Product_properties" as e04 {
+  *id_product : integer
+  --
+  *name : text
+  value : text
+}
+
+e01 ||..o{ e02
+e02 ||..|{ e03
+e02 ||..o{ e04
+@enduml
