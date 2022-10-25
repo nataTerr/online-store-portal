@@ -5,39 +5,40 @@ hide circle
 ' avoid problems with angled crows feet
 skinparam linetype ortho
 
-entity "Categories" as e01 {
+entity "Categories" {
   *id : integer
   --
   *caption: text
   parent_id : integer
 }
 
-entity "Products" as e02 {
-  *id : serial
+entity "Products" {
+  *id : bigserial
   --
   *name : text
+  *category_id : integer
   images : text
   description : text
   short_description : text
-  category_id : integer
 }
 
-entity "Price" as e03 {
-  *id_product : integer
+entity "Price" {
+  *product_id : integer
   --
   *price : money
-  date : timestamp [ (p) ] [ without time zone ]
-  new_price : money
+  *date_from: timestamp [ (p) ] [ without time zone ]
+  date_by: timestamp [ (p) ] [ without time zone ]
 }
 
-entity "Product_properties" as e04 {
-  *id_product : integer
+entity "Product_properties" {
+  *product_id : integer
   --
-  *name : text
+  name : text
   value : text
 }
 
-e01 ||..o{ e02
-e02 ||..|{ e03
-e02 ||..o{ e04
+Categories ||..o{ Products
+Products ||..|{ Price
+Products ||..o{ Product_properties
+
 @enduml
