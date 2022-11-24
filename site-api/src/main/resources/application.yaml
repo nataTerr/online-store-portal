@@ -1,0 +1,16 @@
+my:
+  db:
+    schemaname: site_api
+spring:
+  liquibase:
+    enabled: true
+    drop-first: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    default-schema: ${my.db.schemaname}
+    liquibase-schema: ${my.db.schemaname}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: pgpwd4habr
+    url: jdbc:postgresql://localhost:5432/onlineStorePortal
+
