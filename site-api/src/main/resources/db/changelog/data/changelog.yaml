@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/data/01_create_categories.sql
-  - include:
-      file: db/changelog/data/02_create_products.sql
-  - include:
-      file: db/changelog/data/03_create_price.sql
-  - include:
-      file: db/changelog/data/04_create_product_properties.sql

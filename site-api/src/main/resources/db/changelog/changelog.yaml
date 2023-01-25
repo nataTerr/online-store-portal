@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/query_sql/01_create_categories.sql
+  - include:
+      file: db/changelog/query_sql/02_create_products.sql
+  - include:
+      file: db/changelog/query_sql/03_create_price.sql
+  - include:
+      file: db/changelog/query_sql/04_create_product_properties.sql
+  - include:
+      file: db/changelog/initial-data.yaml
