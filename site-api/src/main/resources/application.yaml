@@ -4,7 +4,7 @@ my:
 spring:
   liquibase:
     enabled: true
-    drop-first: true
+    drop-first: false
     change-log: classpath:db/changelog/db.changelog-master.yaml
     default-schema: ${my.db.schemaname}
     liquibase-schema: ${my.db.schemaname}
@@ -13,4 +13,11 @@ spring:
     username: postgres
     password: pgpwd4habr
     url: jdbc:postgresql://localhost:5432/onlineStorePortal
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 

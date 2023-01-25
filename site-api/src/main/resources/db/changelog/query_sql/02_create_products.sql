@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset demo:data-02
+--changeset demo:query-02
 CREATE TABLE IF NOT EXISTS site_api.products (
     id bigserial PRIMARY KEY not null,
     caption VARCHAR(255) unique not null,

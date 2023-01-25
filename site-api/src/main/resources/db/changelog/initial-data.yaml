@@ -1,0 +1,121 @@
+databaseChangeLog:
+  - changeSet:
+      id: loadDateCategory
+      author: liquibase-docs
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: header1
+                  name: id
+                  type: numeric
+              - column:
+                  header: header2
+                  name: caption
+                  type: STRING
+              - column:
+                  header: header3
+                  name: parent_id
+                  type: numeric
+            commentLineStartsWith: '#'
+            encoding: UTF-8
+            file: db/changelog/data/categories.csv
+            quotchar: ' '
+            separator: ';'
+            relativeToChangelogFile: false
+            tableName: categories
+            schemaName: site_api
+  - changeSet:
+        id: loadDateProduct
+        author: liquibase-docs
+        changes:
+            - loadData:
+                  columns:
+                      - column:
+                            header: header1
+                            name: id
+                            type: skip
+                      - column:
+                            header: header2
+                            name: caption
+                            type: STRING
+                      - column:
+                            header: header3
+                            name: category_id
+                            type: numeric
+                      - column:
+                            header: header4
+                            name: images
+                            type: skip
+                      - column:
+                            header: header5
+                            name: description
+                            type: String
+                      - column:
+                            header: header6
+                            name: short_description
+                            type: String
+                  commentLineStartsWith: '#'
+                  encoding: UTF-8
+                  file: db/changelog/data/products.csv
+                  quotchar: ' '
+                  separator: ';'
+                  relativeToChangelogFile: false
+                  tableName: products
+                  schemaName: site_api
+  - changeSet:
+      id: loadDatePrice
+      author: liquibase-docs
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: header1
+                  name: product_id
+                  type: numeric
+              - column:
+                  header: header2
+                  name: price
+                  type: numeric
+              - column:
+                  header: header3
+                  name: date_from
+                  type: date
+              - column:
+                  header: header4
+                  name: date_by
+                  type: skip
+            commentLineStartsWith: '#'
+            encoding: UTF-8
+            file: db/changelog/data/price.csv
+            quotchar: ' '
+            separator: ';'
+            relativeToChangelogFile: false
+            tableName: price
+            schemaName: site_api
+  - changeSet:
+      id: loadDateProperties
+      author: liquibase-docs
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: header1
+                  name: product_id
+                  type: numeric
+              - column:
+                  header: header2
+                  name: caption
+                  type: STRING
+              - column:
+                  header: header3
+                  name: value
+                  type: STRING
+            commentLineStartsWith: '#'
+            encoding: UTF-8
+            file: db/changelog/data/product_properties.csv
+            quotchar: ' '
+            separator: ';'
+            relativeToChangelogFile: false
+            tableName: product_properties
+            schemaName: site_api
