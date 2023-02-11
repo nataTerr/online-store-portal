@@ -3,6 +3,7 @@ package nata.project.dtos.response;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 public class ProductCardDto {
@@ -11,4 +12,5 @@ public class ProductCardDto {
     private BigDecimal price;
     private String images;
     private String description;
+    private List<ProductPropertiesDto> productProperties;
 }

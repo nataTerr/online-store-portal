@@ -15,7 +15,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/catalog")
-    public List<CategoryDto> findAll(){
+    public List<CategoryDto> findAll() {
         return categoryService.findAll();
     }
 
@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @GetMapping("/catalog/{parentCategoryId}/categories")
-    public List<CategoryDto> findAllByParentId(@PathVariable Integer parentCategoryId){
+    public List<CategoryDto> findAllByParentId(@PathVariable Integer parentCategoryId) {
         return categoryService.findAllByParentId(parentCategoryId);
     }
 }
