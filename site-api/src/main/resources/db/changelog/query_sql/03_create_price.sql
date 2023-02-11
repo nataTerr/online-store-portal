@@ -1,8 +1,9 @@
 --liquibase formatted sql
 --changeset demo:query-03
 CREATE TABLE IF NOT EXISTS site_api.price (
-    product_id bigint primary key references products(id) not null,
-    price money check (price > 0::money) not null,
+    id bigserial PRIMARY KEY not null,
+    product_id bigint references products(id) not null,
+    price numeric check (price > 0::numeric) not null,
     date_from date not null,
     date_by date
     );

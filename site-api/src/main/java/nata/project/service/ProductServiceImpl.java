@@ -34,22 +34,11 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public Page<ProductDto> findAllByCategoryId(Integer parentId, Pageable pageable) {
         List<Integer> categoryIds = categoryService.getListChildCategoryIds(parentId);
-        Page<Product> products = productRepository.findAllByCategoryIdIn(categoryIds, pageable);
+        List<Product> productsList = productRepository.findAllByCategoryIdIn(categoryIds);
+        Page<Product> products = new PageImpl<>(productsList, pageable, productsList.size());
         List<ProductDto> productDtoList = products.getContent().stream()
                 .map(productConverter::convert)
                 .collect(Collectors.toList());
         return new PageImpl<>(productDtoList, pageable, products.getTotalElements());
     }
 }
-//        List<Product> product = products.getContent();
-//        List<ProductDto> productDtoList = products.stream()
-//                .map(productConverter::convert)
-//                .collect(Collectors.toList());
-//        Page<ProductDto> pageProducts = new PageImpl<ProductDto>(productDtoList, pageable, products.getTotalElements());
-//        return pageProducts;
-
-//        return products.stream()
-//                .map(productConverter::convert)
-//                .collect(Collectors.toList()
-//                );
-//    }
