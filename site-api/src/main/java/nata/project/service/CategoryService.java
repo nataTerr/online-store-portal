@@ -11,5 +11,5 @@ public interface CategoryService {
 
     List<CategoryDto> findAllByParentId(Integer parentId);
 
-    List<Integer> getListChildCategoryIds(Integer parentId);
+    List<Integer> getFlatCategoryTree(Integer parentId);
 }

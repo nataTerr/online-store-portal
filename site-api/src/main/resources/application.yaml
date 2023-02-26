@@ -12,7 +12,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: pgpwd4habr
-    url: jdbc:postgresql://localhost:5432/onlineStorePortalNew
+    url: jdbc:postgresql://localhost:5432/onlineStorePortalNew?currentSchema=${my.db.schemaname}
   jpa:
     show-sql: true
     open-in-view: false

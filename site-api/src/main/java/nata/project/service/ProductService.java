@@ -9,5 +9,5 @@ public interface ProductService {
 
     ProductCardDto findById(long productId);
 
-    Page<ProductDto> findAllByCategoryId(Integer parentId, Pageable pageable);
+    Page<ProductDto> getProductsInCategoryGroup(Integer categoryId, Pageable pageable);
 }

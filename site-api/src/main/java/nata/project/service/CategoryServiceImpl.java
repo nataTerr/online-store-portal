@@ -3,7 +3,6 @@ package nata.project.service;
 import lombok.RequiredArgsConstructor;
 import nata.project.dtos.converters.CategoryToDtoConverter;
 import nata.project.dtos.response.CategoryDto;
-import nata.project.entity.Category;
 import nata.project.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,13 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Integer> getListChildCategoryIds(Integer parentId) {
-        List<Integer> categoryList = categoryRepository.findAllByParentId(parentId).stream()
-                .map(Category::getId)
-                .collect(Collectors.toList());
-        if (categoryList.isEmpty()) {
-            categoryList.add(parentId);
-        }
-        return categoryList;
+    public List<Integer> getFlatCategoryTree(Integer parentId) {
+        return categoryRepository.findAllChildCategoriesByParent(parentId);
     }
 }

@@ -26,7 +26,11 @@ public class Category {
     @Column(name = "parent_id")
     private Integer parentId;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     @JoinColumn(name = "parent_id")
     private Set<Category> children = new HashSet<>();
 
