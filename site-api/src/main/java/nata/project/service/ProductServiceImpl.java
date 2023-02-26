@@ -27,15 +27,14 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public ProductCardDto findById(long productId) {
-        return productCardConverter.convert(productRepository.fetchProductPriceByProductIdInnerJoin(productId));
+        return productCardConverter.convert(productRepository.fetchProductPriceByProductId(productId));
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ProductDto> findAllByCategoryId(Integer parentId, Pageable pageable) {
-        List<Integer> categoryIds = categoryService.getListChildCategoryIds(parentId);
-        List<Product> productsList = productRepository.findAllByCategoryIdIn(categoryIds);
-        Page<Product> products = new PageImpl<>(productsList, pageable, productsList.size());
+    public Page<ProductDto> getProductsInCategoryGroup(Integer categoryId, Pageable pageable) {
+        List<Integer> categoryIds = categoryService.getFlatCategoryTree(categoryId);
+        Page<Product> products = productRepository.fetchAllByCategoryIdIn(categoryIds, pageable);
         List<ProductDto> productDtoList = products.getContent().stream()
                 .map(productConverter::convert)
                 .collect(Collectors.toList());

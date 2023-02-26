@@ -16,13 +16,12 @@ public class ProductController {
     private final ProductServiceImpl productService;
 
     @GetMapping("/products/categories/{categoryId}")
-    public Page<ProductDto> findAllByCategoryId(@PathVariable Integer categoryId, Pageable pageable) {
-        return productService.findAllByCategoryId(categoryId, pageable);
+    public Page<ProductDto> getProductsInCategoryGroup(@PathVariable Integer categoryId, Pageable pageable) {
+        return productService.getProductsInCategoryGroup(categoryId, pageable);
     }
 
     @GetMapping("/products/{productId}/detail/info")
     public ProductCardDto findById(@PathVariable long productId) {
         return productService.findById(productId);
     }
-
 }

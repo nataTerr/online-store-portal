@@ -80,7 +80,7 @@ databaseChangeLog:
               - column:
                   header: header3
                   name: date_from
-                  type: date
+                  type: skip
               - column:
                   header: header4
                   name: date_by

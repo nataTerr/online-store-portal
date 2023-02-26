@@ -34,7 +34,12 @@ public class Product {
     @Column(name = "short_description")
     private String shortDescription;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "product",
+            optional = false
+    )
     Price price;
 
     @OneToMany(mappedBy = "product")
