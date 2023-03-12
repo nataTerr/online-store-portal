@@ -12,9 +12,23 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     List<Category> findAllByParentIdIsNull();
 
-    List<Category> findAllById(Integer parentId);
+    @Query(nativeQuery = true,
+            value = "with recursive start_category as (" +
+                    " select c.*" +
+                    " from categories c" +
+                    " where c.id = :categoryId" +
+                    " union" +
+                    " select res.*" +
+                    " from categories res" +
+                    " join start_category on res.id = start_category.parent_id" +
+                    ")" +
+                    "select c.* " +
+                    "from start_category c " +
+                    "order by c.id"
+    )
+    List<Category> breadcrumbs(@Param("categoryId") Integer categoryId);
 
-    List<Category> findAllByParentId(Integer categoryId);
+    List<Category> findAllByParentId(Integer parentId);
 
     @Query(nativeQuery = true,
             value = "with recursive start_category as (" +

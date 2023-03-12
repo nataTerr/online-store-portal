@@ -1,7 +1,9 @@
 package nata.project.service;
 
 import lombok.RequiredArgsConstructor;
+import nata.project.dtos.converters.BreadcrumbsCategoriesToDtoConverter;
 import nata.project.dtos.converters.CategoryToDtoConverter;
+import nata.project.dtos.response.BreadcrumbsCategoriesDto;
 import nata.project.dtos.response.CategoryDto;
 import nata.project.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -15,27 +17,28 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryToDtoConverter categoryConverter;
+    private final BreadcrumbsCategoriesToDtoConverter breadcrumbsConverter;
 
     @Override
     @Transactional(readOnly = true)
-    public List<CategoryDto> findAll() {
+    public List<CategoryDto> getCatalog() {
         return categoryRepository.findAllByParentIdIsNull().stream()
                 .map(categoryConverter::convert)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public CategoryDto findById(Integer id) {
-        return categoryRepository.findById(id)
-                .map(categoryConverter::convert)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+    public List<BreadcrumbsCategoriesDto> breadcrumbs(Integer categoryId) {
+        return categoryRepository.breadcrumbs(categoryId).stream()
+                .map(breadcrumbsConverter::convert)
+                .collect(Collectors.toList());
     }
 
     @Override
     @Transactional(readOnly = true)
     // todo: надо переделать, т.к.запрос несет много лишней информации
     public List<CategoryDto> findAllByParentId(Integer parentId) {
-        return categoryRepository.findAllById(parentId).stream()
+        return categoryRepository.findAllByParentId(parentId).stream()
                 .map(categoryConverter::convert)
                 .collect(Collectors.toList());
     }
