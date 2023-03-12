@@ -6,6 +6,7 @@ import nata.project.dtos.converters.ProductToDtoConverter;
 import nata.project.dtos.response.ProductCardDto;
 import nata.project.dtos.response.ProductDto;
 import nata.project.entity.Product;
+import nata.project.exception.ProductNotFoundException;
 import nata.project.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -26,8 +27,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductCardDto findById(long productId) {
-        return productCardConverter.convert(productRepository.fetchProductPriceByProductId(productId));
+    public ProductCardDto findProductById(long productId) {
+        Product productCard = productRepository.fetchProductPriceByProductId(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+        return productCardConverter.convert(productCard);
     }
 
     @Override
