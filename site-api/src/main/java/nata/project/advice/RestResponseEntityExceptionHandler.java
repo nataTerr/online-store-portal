@@ -1,6 +1,6 @@
 package nata.project.advice;
 
-import nata.project.exception.ProductNotFoundException;
+import nata.project.exception.ItemNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +12,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {ProductNotFoundException.class})
+    @ExceptionHandler(value = {ItemNotFoundException.class})
     protected ResponseEntity<Object> handleProductNotFoundException(
-            ProductNotFoundException ex, WebRequest request) {
+            ItemNotFoundException ex, WebRequest request) {
         ResponseErrorDto responseErrorDtoOfResponse = new ResponseErrorDto(false, ex.getMessage());
         return handleExceptionInternal(ex, responseErrorDtoOfResponse,
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
