@@ -20,8 +20,8 @@ public class ProductController {
         return productService.getProductsInCategoryGroup(categoryId, pageable);
     }
 
-    @GetMapping("/products/{productId}/detail/info")
-    public ProductCardDto findById(@PathVariable long productId) {
-        return productService.findById(productId);
+    @GetMapping(value = "/products/{productId}/detail/info")
+    public ProductCardDto getProductCard(@PathVariable long productId) {
+        return productService.findProductById(productId);
     }
 }

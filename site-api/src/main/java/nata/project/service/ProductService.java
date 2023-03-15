@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ProductService {
 
-    ProductCardDto findById(long productId);
+    ProductCardDto findProductById(long productId);
 
     Page<ProductDto> getProductsInCategoryGroup(Integer categoryId, Pageable pageable);
 }

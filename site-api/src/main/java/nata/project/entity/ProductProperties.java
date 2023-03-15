@@ -13,17 +13,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ProductProperties {
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "product_id")
+    private Long id;
 
     @Column(name = "caption")
     private String caption;
 
     @Column(name = "value")
     private String value;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
 }

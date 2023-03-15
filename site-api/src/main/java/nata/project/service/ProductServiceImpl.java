@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProductCardDto findById(long productId) {
+    public ProductCardDto findProductById(long productId) {
         Product productCard = productRepository.fetchProductPriceByProductId(productId)
                 .orElseThrow(() -> new ItemNotFoundException(String.format("Product with id %d not found", productId)));
         return productCardConverter.convert(productCard);
