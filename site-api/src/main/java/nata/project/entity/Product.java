@@ -42,6 +42,7 @@ public class Product {
     )
     Price price;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     List<ProductProperties> productProperties;
 }

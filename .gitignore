@@ -4,5 +4,4 @@
 *.iws
 
 # Maven
-log/
 site-api/target/
