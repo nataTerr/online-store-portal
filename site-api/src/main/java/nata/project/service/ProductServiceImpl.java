@@ -8,6 +8,8 @@ import nata.project.dtos.response.ProductDto;
 import nata.project.entity.Product;
 import nata.project.exception.ItemNotFoundException;
 import nata.project.repository.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -24,12 +26,18 @@ public class ProductServiceImpl implements ProductService {
     private final ProductToDtoConverter productConverter;
     private final CategoryService categoryService;
     private final ProductCardToDtoConverter productCardConverter;
+    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Override
     @Transactional(readOnly = true)
     public ProductCardDto findProductById(long productId) {
+        logger.info("Product information with id {} " +
+                "(method call fetchProductPriceByProductId in ProductRepository)", productId);
         Product productCard = productRepository.fetchProductPriceByProductId(productId)
-                .orElseThrow(() -> new ItemNotFoundException(String.format("Product with id %d not found", productId)));
+                .orElseThrow(() -> {
+                    logger.error("Product with id {} not found", productId);
+                    return new ItemNotFoundException(String.format("Product with id %d not found", productId));
+                });
         return productCardConverter.convert(productCard);
     }
 
@@ -37,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
     @Transactional(readOnly = true)
     public Page<ProductDto> getProductsInCategoryGroup(Integer categoryId, Pageable pageable) {
         List<Integer> categoryIds = categoryService.getFlatCategoryTree(categoryId);
+        logger.info("Find all products in parent {} and child categories " +
+                "(method call fetchAllByCategoryIdIn in ProductRepository)", categoryId);
         Page<Product> products = productRepository.fetchAllByCategoryIdIn(categoryIds, pageable);
         List<ProductDto> productDtoList = products.getContent().stream()
                 .map(productConverter::convert)
