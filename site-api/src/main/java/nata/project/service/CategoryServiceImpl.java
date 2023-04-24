@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
+    private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
     private final CategoryRepository categoryRepository;
     private final CategoryToDtoConverter categoryConverter;
     private final BreadcrumbsCategoriesToDtoConverter breadcrumbsConverter;
-    private static final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     @Override
     @Transactional(readOnly = true)
@@ -52,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Integer> getFlatCategoryTree(Integer parentId) {
-        logger.info("Find all child categories by parent {} " +
+        logger.trace("Find all child categories by parent {} " +
                 "(method call findAllChildCategoriesByParent in CategoryRepository)", parentId);
         return categoryRepository.findAllChildCategoriesByParent(parentId);
     }

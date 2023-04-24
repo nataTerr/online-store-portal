@@ -3,5 +3,8 @@
 *.iml
 *.iws
 
+#Logger
+site-api/src/main/log/
+
 # Maven
 site-api/target/

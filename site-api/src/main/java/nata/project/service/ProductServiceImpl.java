@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
+    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
     private final ProductRepository productRepository;
     private final ProductToDtoConverter productConverter;
     private final CategoryService categoryService;
     private final ProductCardToDtoConverter productCardConverter;
-    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Override
     @Transactional(readOnly = true)
@@ -34,10 +34,8 @@ public class ProductServiceImpl implements ProductService {
         logger.info("Product information with id {} " +
                 "(method call fetchProductPriceByProductId in ProductRepository)", productId);
         Product productCard = productRepository.fetchProductPriceByProductId(productId)
-                .orElseThrow(() -> {
-                    logger.error("Product with id {} not found", productId);
-                    return new ItemNotFoundException(String.format("Product with id %d not found", productId));
-                });
+                .orElseThrow(() ->
+                        new ItemNotFoundException(String.format("Product with id %d not found", productId)));
         return productCardConverter.convert(productCard);
     }
 
