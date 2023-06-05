@@ -96,6 +96,7 @@ databaseChangeLog:
   - changeSet:
       id: loadDateProperties
       author: liquibase-docs
+      validCheckSum: 8:62d40c053fe41ec5cbe5d2caeca13da9
       changes:
         - loadData:
             columns:
@@ -109,7 +110,7 @@ databaseChangeLog:
                   type: STRING
               - column:
                   header: header3
-                  name: value
+                  name: val
                   type: STRING
             commentLineStartsWith: '#'
             encoding: UTF-8
