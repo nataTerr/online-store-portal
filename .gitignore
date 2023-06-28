@@ -4,10 +4,7 @@
 *.iws
 
 #Logger
-site-api/src/main/log/
+site-api/log/
 
 # Maven
 site-api/target/
-
-#h2
-site-api/*.mv.db
