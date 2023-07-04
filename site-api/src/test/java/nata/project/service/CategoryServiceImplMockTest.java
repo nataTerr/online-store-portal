@@ -51,7 +51,7 @@ public class CategoryServiceImplMockTest {
     public void checkBreadcrumbsForNonExistentCategory() throws Exception {
         //given
         Mockito.when(categoryRepository.breadcrumbs(50))
-                .thenReturn(HelperForMockitoData.nullList());
+                .thenReturn(HelperForMockitoData.emptyList());
         //then
         mockMvc.perform(get("/catalog/breadcrumbs/{categoryId}", 50))
                 .andExpect(status().isOk())

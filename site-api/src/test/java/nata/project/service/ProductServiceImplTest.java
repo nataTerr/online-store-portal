@@ -35,7 +35,7 @@ public class ProductServiceImplTest {
 
     @Test
     @Transactional
-    public void saveProductAndGetProductCard() throws Exception {
+    public void getProductCard() throws Exception {
         //given
         Product product = generateAndSaveProduct();
         //then

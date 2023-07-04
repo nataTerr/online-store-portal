@@ -42,7 +42,7 @@ public class HelperForMockitoData {
         return breadcrumbs;
     }
 
-    public static List<Category> nullList() {
+    public static List<Category> emptyList() {
         return new ArrayList<>();
     }
 
