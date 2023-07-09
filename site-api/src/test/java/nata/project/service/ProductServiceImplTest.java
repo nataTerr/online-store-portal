@@ -2,7 +2,6 @@ package nata.project.service;
 
 import nata.project.DemoApplication;
 import nata.project.entity.Product;
-import nata.project.exception.ItemNotFoundException;
 import nata.project.repository.ProductRepository;
 import nata.project.service.data.HelperForGeneratingData;
 import nata.project.service.data.Randomizer;
@@ -65,9 +64,9 @@ public class ProductServiceImplTest {
         //then
         mockMvc.perform(get("/products/{productId}/detail/info", productId))
                 .andExpect(status().isNotFound())
-                .andExpect(mvcResult -> mvcResult.getResolvedException().getClass().equals(ItemNotFoundException.class))
-                .andExpect(mvcResult -> mvcResult.getResolvedException().getMessage()
-                        .equals(String.format("Product with id %d not found", productId)))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.message", is(String.format("Product with id %d not found", productId))))
         ;
     }
 
