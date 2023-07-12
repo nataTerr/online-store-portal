@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:./onlineStorePortalNew;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;INIT=CREATE SCHEMA IF NOT EXISTS site_api;DB_CLOSE_DELAY=-1
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        default_schema: site_api
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    open-in-view: false
+

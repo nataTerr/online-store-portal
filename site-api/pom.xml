@@ -60,6 +60,17 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.fluttercode.datafactory</groupId>
+            <artifactId>datafactory</artifactId>
+            <scope>test</scope>
+            <version>0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

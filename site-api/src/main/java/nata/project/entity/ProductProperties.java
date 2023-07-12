@@ -19,6 +19,6 @@ public class ProductProperties {
     @Column(name = "caption")
     private String caption;
 
-    @Column(name = "value")
+    @Column(name = "val")
     private String value;
 }
