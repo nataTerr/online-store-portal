@@ -1,0 +1,63 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Cart" {
+  *id : bigserial
+  --
+  *client_id : bigint
+  *items_number : integer
+  *amount : numeric(12, 2)
+}
+
+entity "Cart_items" {
+  *id : bigserial
+  --
+  *cart_id : bigint
+  *product_id : bigint
+  *unit_number : integer
+  *unit_amount : numeric(12, 2)
+  total_amount : numeric(12, 2)
+}
+
+entity "Orders" {
+  *id : bigserial
+  --
+  *client_id: bigint
+  *order_date : timestamp [ (p) ] [ without time zone ]
+  *amount : numeric(12, 2)
+  *delivery_address_id : bigint
+  *status : enum
+}
+
+entity "Order_items" {
+  *id : bigserial
+  --
+  *order_id : bigint
+  *product_id : bigint
+  *quantity : integer
+  *unit_amount : numeric(12, 2)
+  total_amount : numeric(12, 2)
+  *delivery_date : timestamp [ (p) ] [ without time zone ]
+}
+
+entity "Delivery_address" {
+  *id : bigserial
+  --
+  *order_delivery : enum(by mail, point of issue, courier)
+  *city: text
+  *street: text
+  *house : text
+  *flat : integer
+}
+
+
+Cart||..|{ Cart_items
+Cart||..o{ Orders
+Orders||..|{ Order_items
+Orders||..|| Delivery_address
+
+@enduml
