@@ -30,7 +30,7 @@ entity "Orders" {
   *order_date : timestamp [ (p) ] [ without time zone ]
   *amount : numeric(12, 2)
   *delivery_address_id : bigint
-  *status : enum
+  *payment status : enum (оплачен, не оплачен)
 }
 
 entity "Order_items" {
@@ -42,6 +42,8 @@ entity "Order_items" {
   *unit_amount : numeric(12, 2)
   total_amount : numeric(12, 2)
   *delivery_date : timestamp [ (p) ] [ without time zone ]
+  *status : enum (оформлен, передан в доставку,
+                 в службе доставки, в пути, в пункте/у курьера, получен)
 }
 
 entity "Delivery_address" {
@@ -51,11 +53,11 @@ entity "Delivery_address" {
   *city: text
   *street: text
   *house : text
-  *flat : integer
+  flat : integer
 }
 
 
-Cart||..|{ Cart_items
+Cart||..o{ Cart_items
 Cart||..o{ Orders
 Orders||..|{ Order_items
 Orders||..|| Delivery_address
