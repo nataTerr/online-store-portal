@@ -1,4 +1,4 @@
-package nata.project.entity;
+package nata.project.model.dto.response.orders;
 
 import lombok.Getter;
 import lombok.Setter;

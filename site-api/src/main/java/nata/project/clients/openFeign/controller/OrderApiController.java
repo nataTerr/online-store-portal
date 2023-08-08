@@ -1,7 +1,7 @@
-package nata.project.openFeign.controller;
+package nata.project.clients.openFeign.controller;
 
-import nata.project.openFeign.clients.OrderApiFeignClient;
-import nata.project.openFeign.dtos.OrderDto;
+import nata.project.clients.openFeign.dtos.OrderDto;
+import nata.project.clients.openFeign.clients.OrderApiFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package nata.project.openFeign.dtos;
+package nata.project.clients.openFeign.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
