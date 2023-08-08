@@ -27,7 +27,8 @@ entity "Orders" {
   *id : bigserial
   --
   *client_id: bigint
-  *order_date : timestamp [ (p) ] [ without time zone ]
+  *create_date : timestamp [ (p) ] [ with time zone ]
+  *update_date : timestamp [ (p) ] [ without time zone ]
   *amount : numeric(12, 2)
   *delivery_address_id : bigint
   *payment status : enum (оплачен, не оплачен)
@@ -58,7 +59,6 @@ entity "Delivery_address" {
 
 
 Cart||..o{ Cart_items
-Cart||..o{ Orders
 Orders||..|{ Order_items
 Orders||..|| Delivery_address
 
