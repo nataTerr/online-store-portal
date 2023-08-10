@@ -11,7 +11,7 @@
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>log/log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>site-api/log/log.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
