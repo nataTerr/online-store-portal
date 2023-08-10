@@ -1,6 +1,6 @@
 package nata.project.clients.openFeign.controller;
 
-import nata.project.clients.openFeign.dtos.OrderDto;
+import nata.project.clients.openFeign.dto.request.OrderDto;
 import nata.project.clients.openFeign.clients.OrderApiFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
