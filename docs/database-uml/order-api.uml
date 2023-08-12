@@ -27,11 +27,15 @@ entity "Orders" {
   *id : bigserial
   --
   *client_id: bigint
-  *create_date : timestamp [ (p) ] [ with time zone ]
+  *create_date : timestamp [ (p) ] [ without time zone ]
+  *timeZone for create_date: smallint
   *update_date : timestamp [ (p) ] [ without time zone ]
   *amount : numeric(12, 2)
   *delivery_address_id : bigint
   *payment status : enum (оплачен, не оплачен)
+  *delivery_date : timestamp [ (p) ] [ without time zone ]
+  *status : enum (оформлен, передан в доставку,
+                   в службе доставки, в пути, в пункте/у курьера, получен)
 }
 
 entity "Order_items" {
@@ -42,9 +46,6 @@ entity "Order_items" {
   *quantity : integer
   *unit_amount : numeric(12, 2)
   total_amount : numeric(12, 2)
-  *delivery_date : timestamp [ (p) ] [ without time zone ]
-  *status : enum (оформлен, передан в доставку,
-                 в службе доставки, в пути, в пункте/у курьера, получен)
 }
 
 entity "Delivery_address" {
