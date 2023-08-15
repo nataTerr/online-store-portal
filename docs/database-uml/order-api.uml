@@ -28,8 +28,9 @@ entity "Orders" {
   --
   *client_id: bigint
   *create_date : timestamp [ (p) ] [ without time zone ]
-  *timeZone for create_date: smallint
+  *create_date_tz: smallint
   *update_date : timestamp [ (p) ] [ without time zone ]
+  *update_date_tz : smallint
   *amount : numeric(12, 2)
   *delivery_address_id : bigint
   *payment status : enum (оплачен, не оплачен)
