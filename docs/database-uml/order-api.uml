@@ -30,11 +30,11 @@ entity "Orders" {
   *create_date : timestamp [ (p) ] [ without time zone ]
   *create_date_tz: smallint
   *update_date : timestamp [ (p) ] [ without time zone ]
-  *update_date_tz : smallint
   *amount : numeric(12, 2)
   *delivery_address_id : bigint
   *payment status : enum (оплачен, не оплачен)
   *delivery_date : timestamp [ (p) ] [ without time zone ]
+  *delivery_date_tz : smallint
   *status : enum (оформлен, передан в доставку,
                    в службе доставки, в пути, в пункте/у курьера, получен)
 }
