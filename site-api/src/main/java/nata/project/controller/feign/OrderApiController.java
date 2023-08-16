@@ -1,4 +1,4 @@
-package nata.project.clients.openFeign.controller;
+package nata.project.controller.feign;
 
 import nata.project.clients.openFeign.dto.request.OrderDto;
 import nata.project.clients.openFeign.clients.OrderApiFeignClient;
