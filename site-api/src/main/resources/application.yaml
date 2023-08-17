@@ -1,6 +1,11 @@
+server:
+  port: 8080
+order.api:
+  url: http://localhost:8081/
 my:
   db:
     schemaname: site_api
+
 spring:
   liquibase:
     enabled: true
@@ -19,5 +24,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
-
