@@ -27,6 +27,6 @@ public class Cart {
     @Column(name = "amount")
     private BigDecimal amount;
 
-    @OneToMany(mappedBy = "cart")
-    List<CartItems> cartItems;
+    @OneToMany(mappedBy = "cart", orphanRemoval = true)
+    private List<CartItems> cartItems;
 }

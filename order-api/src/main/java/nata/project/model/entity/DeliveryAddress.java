@@ -6,19 +6,19 @@ import lombok.Setter;
 import nata.project.model.enums.Delivery;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "delivery_address")
 @Getter
 @Setter
 @NoArgsConstructor
-public class DeliveryAddress implements Serializable {
+public class DeliveryAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "order_delivery")
+    @Enumerated(EnumType.STRING)
     private Delivery orderDelivery;
 
     @Column(name = "city")
@@ -39,5 +39,5 @@ public class DeliveryAddress implements Serializable {
             mappedBy = "deliveryAddress",
             optional = false
     )
-    Orders orders;
+    private Orders order;
 }

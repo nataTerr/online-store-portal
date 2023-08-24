@@ -7,7 +7,6 @@ import nata.project.model.enums.OrderStatus;
 import nata.project.model.enums.PaymentStatus;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Orders implements Serializable {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,34 +24,36 @@ public class Orders implements Serializable {
     @Column(name = "client_id")
     private Long clientId;
 
-    @Column(name = "create_date", columnDefinition = "TIMESTAMP")
+    @Column(name = "create_date")
     private LocalDateTime createDate;
 
     @Column(name = "create_date_tz")
     private String createDateTZ;
 
-    @Column(name = "update_date", columnDefinition = "TIMESTAMP")
+    @Column(name = "update_date")
     private LocalDateTime updateDate;
 
     @Column(name = "amount")
     private BigDecimal amount;
 
     @Column(name = "payment_status")
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
-    @Column(name = "delivery_date", columnDefinition = "TIMESTAMP")
+    @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
 
     @Column(name = "delivery_date_tz")
     private String deliveryDateTZ;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_address_id")
     private DeliveryAddress deliveryAddress;
 
-    @OneToMany(mappedBy = "orders")
-    List<OrdersItems> ordersItems;
+    @OneToMany(mappedBy = "order", orphanRemoval = true)
+    private List<OrdersItems> ordersItems;
 }

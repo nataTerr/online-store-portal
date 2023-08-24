@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS order_api.order_items (
     product_id bigint not null,
     quantity integer not null,
     unit_amount numeric(12, 2) not null,
-    total_amount numeric(12, 2)
+    total_amount numeric(12, 2) not null
     );
 -- rollback DROP TABLE order_items;
