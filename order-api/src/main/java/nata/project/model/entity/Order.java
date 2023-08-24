@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Orders {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -55,5 +55,5 @@ public class Orders {
     private DeliveryAddress deliveryAddress;
 
     @OneToMany(mappedBy = "order", orphanRemoval = true)
-    private List<OrdersItems> ordersItems;
+    private List<OrderItems> ordersItems;
 }

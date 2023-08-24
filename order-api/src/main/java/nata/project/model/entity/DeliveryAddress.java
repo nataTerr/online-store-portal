@@ -39,5 +39,5 @@ public class DeliveryAddress {
             mappedBy = "deliveryAddress",
             optional = false
     )
-    private Orders order;
+    private Order order;
 }
