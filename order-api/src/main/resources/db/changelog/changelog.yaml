@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/query_sql/01_create_cart.sql
+  - include:
+      file: db/changelog/query_sql/02_create_cart_items.sql
+  - include:
+      file: db/changelog/query_sql/03_create_delivery_address.sql
+  - include:
+      file: db/changelog/query_sql/04_create_orders.sql
+  - include:
+      file: db/changelog/query_sql/05_create_order_items.sql
